@@ -5,7 +5,7 @@ JS module presenting routine to synchronize several asynchronous functions that 
 Current module version is 0.3.1.
 
 ## License ##
-**silly-barrier** is licensed under MIT license. See [LICENSE](./LICENSE) for details.
+**silly-barrier** is licensed under MIT license. See [license](./LICENSE) for details.
 
 ## Usage ##
 ### Install ###
@@ -41,11 +41,17 @@ Example of routines array:
 
     var routines = [
 		{ 
-			func: ( arg1, arg2, callbackfn ) => { var temp = arg1 + arg2; callbackfn( temp ); },
+			func: ( arg1, arg2, callbackfn ) => { 
+				var temp = arg1 + arg2;
+				callbackfn( temp );
+			},
 			args: [ 1, 2, alert ]
 		},
 		{ 
-			func: ( arg1, callbackfn, somefunc ) => { var temp = somefunc( arg1 ), callbackfn( temp ); },
+			func: ( arg1, callbackfn, somefunc ) => {
+				var temp = somefunc( arg1 );
+				callbackfn( temp );
+			},
 			args: [ 0.5, console.log, Math.sin ],
 			cbkey: 1 
 		}
