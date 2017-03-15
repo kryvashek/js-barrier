@@ -1,15 +1,15 @@
-# barrier #
+# silly-barrier #
 JS module presenting routine to synchronize several asynchronous functions that invoke callbacks.
 
 ## Version ##
-Current module version is 0.3.0.
+Current module version is 0.3.1.
 
 ## License ##
-**barrier** is licensed under MIT license. See [LICENSE](./LICENSE) for details.
+**silly-barrier** is licensed under MIT license. See [LICENSE](./LICENSE) for details.
 
 ## Usage ##
 ### Install ###
-Just run command `npm install barrier` to have this module installed for your project. See usage of **npm** tool for details.
+Just run command `npm install silly-barrier` to have this module installed for your project. See usage of **npm** tool for details.
 
 ### Test ###
 To test module just run command `nodejs test.js` from the console in the folder where module is placed. You should see the output like that:
@@ -30,7 +30,7 @@ To test module just run command `nodejs test.js` from the console in the folder 
 	12) Final callback invoked, output has 12 lines
 
 ### Run ###
-For using **barrier** in a code one need to form an array of so-called routines. Each routine should contain at least two fields:
+For using **silly-barrier** in a code one need to form an array of so-called routines. Each routine should contain at least two fields:
 
 * **func** - function that will be invoked as some asynchronous routine,
 * **args** - array of arguments to pass to the function while invoking (including callback for that routine).
@@ -63,6 +63,6 @@ After creating of described array, one should call imported **barier** function 
 
 Example of function **barrier** calling:
 
-    require('barrier').barrier( routines, { func: alert, args: [ 'Finished!' ] } );
+    require('silly-barrier').barrier( routines, { func: alert, args: [ 'Finished!' ] } );
 
 The full working example of module usage one can find in [test.js](./test.js).
