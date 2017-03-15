@@ -1,0 +1,25 @@
+{
+    "name": "barrier",
+    "version": "0.3.0",
+    "description": "Routine to synchronize several functions invoked as callbacks or that invoke callbacks.",
+    "main": "index.js",
+    "scripts": {
+        "test": "nodejs ./test.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kryvashek/js-barrier.git"
+    },
+    "keywords": [
+        "barrier",
+        "synchro",
+        "callback",
+        "function"
+    ],
+    "author": "kryvashek",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/kryvashek/js-barrier/issues"
+    },
+    "homepage": "https://github.com/kryvashek/js-barrier#readme"
+}
