@@ -17,21 +17,28 @@ module.exports = {
 function barrier(routines, callback) {
     var callbacksCount = 0;
 
-    routines.forEach((item, index) => {
+    routines.forEach(item => {
         if (!item.cbkey)
             item.cbkey = Object.keys(item.args).reduce((prev, curr) => ('function' === typeof item.args[curr] ? curr : prev));
 
-        item.args[item.cbkey] = (...funcArgs) => {
-            item.args[item.cbkey](...funcArgs);
-            callbacksCount--;
+        if ('function' === typeof item.args[item.cbkey]) {
+            var localCallback = item.args[item.cbkey];
 
-            if (0 >= callbacksCount)
-                callback.func(...callback.args);
-        };
-        item.func(...item.args);
-        callbacksCount++;
+            callbacksCount++;
+            item.args[item.cbkey] = (...funcArgs) => {
+                localCallback(...funcArgs);
+                callbacksCount--;
+
+                if (0 >= callbacksCount)
+                    callback.func(...callback.args);
+            };
+        }
     });
 
-    if (0 === callbacksCount)
+    var invokeCallback = (0 === callbacksCount);
+
+    routines.forEach(item => item.func(...item.args));
+
+    if (invokeCallback)
         callback.func(...callback.args);
 }
