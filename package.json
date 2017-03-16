@@ -1,14 +1,14 @@
 {
     "name": "silly-barrier",
-    "version": "0.3.1",
-    "description": "Routine to synchronize several functions invoked as callbacks or that invoke callbacks.",
+    "version": "0.3.2",
+    "description": "Routine to synchronize several asynchronous functions that invoke callbacks.",
     "main": "index.js",
     "scripts": {
         "test": "nodejs ./test.js"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/kryvashek/js-barrier.git"
+        "url": "git+https://github.com/kryvashek/silly-barrier.git"
     },
     "keywords": [
         "barrier",
@@ -17,9 +17,9 @@
         "function"
     ],
     "author": "kryvashek",
-    "license": "MIT",
+    "license": "BSD 3-Clause",
     "bugs": {
-        "url": "https://github.com/kryvashek/js-barrier/issues"
+        "url": "https://github.com/kryvashek/silly-barrier/issues"
     },
-    "homepage": "https://github.com/kryvashek/js-barrier#readme"
+    "homepage": "https://github.com/kryvashek/silly-barrier#readme"
 }
