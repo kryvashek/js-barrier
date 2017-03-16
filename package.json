@@ -1,6 +1,6 @@
 {
     "name": "silly-barrier",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "Routine to synchronize several asynchronous functions that invoke callbacks.",
     "main": "index.js",
     "scripts": {
@@ -17,7 +17,7 @@
         "function"
     ],
     "author": "kryvashek",
-    "license": "BSD 3-Clause",
+    "license": "BSD-3-Clause",
     "bugs": {
         "url": "https://github.com/kryvashek/silly-barrier/issues"
     },
