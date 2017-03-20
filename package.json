@@ -1,6 +1,6 @@
 {
     "name": "silly-barrier",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "description": "Routine to synchronize several asynchronous functions that invoke callbacks.",
     "main": "index.js",
     "scripts": {
