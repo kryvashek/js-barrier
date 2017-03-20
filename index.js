@@ -4,14 +4,14 @@ module.exports = {
 
 /**
  * @description Invokes several routines and calls specified callback after finishing every of them.
- * @requires Every called routine should call its own callback - there is no way to synchronize them without that feature.
+ * @requires Requires callback specified as an argument for every asynchronous routine.
  * @param routines Array of the routines to synchronize, every item should have next fields:
- *     @arg func (function itself),
- *     @arg [ args ] (array of the arguments including the callback; may be empty or even undefined),
- *     @arg [ cbkey ] (key of the callback function in the args; if not specified, the last function in the args assumed to be the callback).
+ *     func (function itself),
+ *     [ args ] (array of the arguments including the callback; may be empty or even undefined),
+ *     [ cbkey ] (key of the callback function in the args; if not specified, the last function in the args assumed to be the callback).
  * @param callback Description of the function to invoke after finishing of the every called routine, should contain fields:
- *     @arg func (function itself),
- *     @arg [ args ] (array of the arguments for the callback; may be empty or even undefined).
+ *     func (function itself),
+ *     [ args ] (array of the arguments for the callback; may be empty or even undefined).
  * @returns Returns nothing.
  **/
 function barrier(routines, callback) {
