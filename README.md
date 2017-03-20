@@ -2,7 +2,7 @@
 JS module presenting routine to synchronize several asynchronous functions that invoke callbacks.
 
 ## Version ##
-Current module version is 0.4.1.
+Current module version is 0.4.2.
 
 ## License ##
 **silly-barrier** is licensed under BSD 3-clause "Revised" License. See [license](./LICENSE) for details.
