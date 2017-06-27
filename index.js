@@ -16,41 +16,42 @@ module.exports = {
  **/
 function barrier(routines, callback) {
     var callbacksCount = 0,
-        doRoutine = routine => {
-            if (!routine || !routine.func)
+        doRoutine = routine => { // routine invoker
+            if (!routine || !routine.func) // if routine is unspecified - skip it
                 return;
 
-            if (routine.args)
+            if (routine.args) // if parameters are specified - pass them to the routine while invoking
                 routine.func(...routine.args);
-            else
+            else // otherwise invoke routine without any parameters
                 routine.func();
         };
 
     routines.forEach(item => {
-        if (!(item && item.func && item.args))
+        if (!(item && item.func && item.args)) // if routine or parameters are unspecified - skip it
             return;
 
-        if (!item.cbkey)
+        if (!item.cbkey) // if local callback key is unspecified - find it out
             Object.keys(item.args).reverse().some(key => ('function' === typeof item.args[item.cbkey = key]));
 
-        if ('function' === typeof item.args[item.cbkey]) {
-            var localCallback = item.args[item.cbkey];
+        if ('function' !== typeof item.args[item.cbkey]) // if local callback was not found among the routine parameters - skip
+            return;
 
-            callbacksCount++;
-            item.args[item.cbkey] = (...funcArgs) => {
-                localCallback(...funcArgs);
-                callbacksCount--;
+        var localCallback = item.args[item.cbkey];
 
-                if (0 >= callbacksCount)
-                    doRoutine(callback);
-            };
-        }
+        callbacksCount++; // count up callable routines with specified local callbacks
+        item.args[item.cbkey] = (...funcArgs) => { // form new callback instead of old, with coutning down
+            localCallback(...funcArgs); // invoke old callback with given parameters
+            callbacksCount--; // count down finished local callbacks
+
+            if (0 >= callbacksCount) // invoke global callback if count down is finished
+                doRoutine(callback);
+        };
     });
 
-    var invokeCallback = (0 === callbacksCount);
+    var invokeCallback = (0 === callbacksCount); // check whether there were any callable routines with specified local callbacks among the arguments
 
-    routines.forEach(doRoutine);
+    routines.forEach(doRoutine); // invoke all available callable routines from the arguments
 
-    if (invokeCallback)
+    if (invokeCallback) // if there were no callable routines with specified local callbacks among the arguments - invoke global callback from here
         doRoutine(callback);
 }

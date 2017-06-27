@@ -2,7 +2,7 @@
 JS module presenting routine to synchronize several asynchronous functions that invoke callbacks.
 
 ## Version ##
-Current module version is 0.4.2.
+Current module version is 1.0.0, and development assumed finished. The version will not change if there are no bug reports.
 
 ## License ##
 **silly-barrier** is licensed under BSD 3-clause "Revised" License. See [license](./LICENSE) for details.
@@ -10,6 +10,9 @@ Current module version is 0.4.2.
 ## Usage ##
 ### Install ###
 Just run command `npm install silly-barrier` to have this module installed for your project. See usage of **npm** tool for details.
+
+### Dependencies ###
+Current version of **silly-barrier** has no dependencies.
 
 ### Test ###
 To test module just run command `nodejs ./test.js` from the console in the folder where module is placed. You should see the output like that:
