@@ -33,18 +33,19 @@ function barrier(routines, callback) {
         if (!item.cbkey) // if local callback key is unspecified - find it out
             Object.keys(item.args).reverse().some(key => ('function' === typeof item.args[item.cbkey = key]));
 
-        if ('function' === typeof item.args[item.cbkey]) { // if local callback was found among the routine parameters
-            var localCallback = item.args[item.cbkey];
+        if ('function' !== typeof item.args[item.cbkey]) // if local callback was not found among the routine parameters - skip
+            return;
 
-            callbacksCount++; // count up callable routines with specified local callbacks
-            item.args[item.cbkey] = (...funcArgs) => { // form new callback instead of old, with coutning down
-                localCallback(...funcArgs); // invoke old callback with given parameters
-                callbacksCount--; // count down finished local callbacks
+        var localCallback = item.args[item.cbkey];
 
-                if (0 >= callbacksCount) // invoke global callback if count down is finished
-                    doRoutine(callback);
-            };
-        }
+        callbacksCount++; // count up callable routines with specified local callbacks
+        item.args[item.cbkey] = (...funcArgs) => { // form new callback instead of old, with coutning down
+            localCallback(...funcArgs); // invoke old callback with given parameters
+            callbacksCount--; // count down finished local callbacks
+
+            if (0 >= callbacksCount) // invoke global callback if count down is finished
+                doRoutine(callback);
+        };
     });
 
     var invokeCallback = (0 === callbacksCount); // check whether there were any callable routines with specified local callbacks among the arguments
